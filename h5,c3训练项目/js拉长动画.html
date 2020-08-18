@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width: 500px;
+            height: 50px;
+            background-color: red;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            transition: width,1s,initial,0;
+        }
+        .box2{
+            width: 500px;
+            height: 50px;
+            background-color: blue;
+        }
+        .box1:hover{
+            width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        var newWidth=500;
+        var timer;
+        var obox2=document.getElementsByClassName("box2");
+        obox2[0].onmouseover = function(){
+            clearInterval(timer);
+            newWidth=500;
+            timer = setInterval(function(){
+                newWidth+=5;
+                obox2[0].style.width = newWidth+"px"
+                if(newWidth>1000){
+                clearInterval(timer);
+            }
+            },1)
+        }
+        obox2[0].onmouseout = function(){
+            clearInterval(timer);
+            newWidth=obox2[0].offsetWidth;
+            timer = setInterval(function(){
+                newWidth-=5;
+                obox2[0].style.width = newWidth+"px"
+                if(newWidth<500){
+                clearInterval(timer);
+            }
+            },1)
+        }
+    </script>
+</body>
+</html>

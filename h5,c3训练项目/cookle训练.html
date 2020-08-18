@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setCookle("vipname","chen",3);
+        getCookle("vipname");
+        // delCookle("chen");
+        
+        function setCookle(a,b,c){
+        var timer = new Date();
+        timer.setDate(timer.getDate()+c);
+        document.cookie = a+"="+b+";expires="+timer.toUTCString();    
+        }
+        function getCookle(a){
+            var n = document.cookie.split(";");
+            for(var i = 0 ;i<n.length;i++){
+                var ye = n[i].split("=");
+                if(ye[0].trim()==a){
+                    console.log(ye[1]);
+                }
+            }
+          
+        }
+        function delCookle(a){
+            var timer = new Date();
+        timer.setDate(timer.getDate()-1);
+        document.cookie ="vipname="+a+";expires="+timer.toUTCString(); 
+        }
+    </script>
+</body>
+</html>

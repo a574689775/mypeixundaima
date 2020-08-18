@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #can {
+            background-color: pink;
+
+        }
+
+        .div {
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"><canvas id="can" width="1000" height="600"></canvas></div>
+
+    <script>
+        var a1 = document.querySelector("#can");
+        var ocan = a1.getContext("2d");
+        var ox, oy;
+
+        setInterval(function () {
+            a1.onmousedown = function (e) {
+                a1.onmousemove = function (event) {
+                    var color1 = suijishu();
+                    var color2 = suijishu();
+                    var color3 = suijishu();
+                    x = event.clientX;
+                    y = event.clientY;
+                    ocan.strokeStyle = "rgb(" + color1 + "," + color2 + "," + color3 + ")"
+                    ocan.lineWidth = 10;
+                    ocan.beginPath();
+                    ocan.moveTo(ox, oy);
+                    ocan.lineTo(x, y);
+                    ocan.stroke();
+                    ox = x;
+                    oy = y;
+
+                }
+            }
+            a1.onmouseup = function () {
+                a1.onmousemove = function (event) {
+                    ox = event.clientX;
+                    oy = event.clientY;
+                }
+            }
+
+        }, 1)
+function suijishu(){
+    return Math.floor(Math.random()*256);
+}
+
+    </script>
+</body>
+
+</html>

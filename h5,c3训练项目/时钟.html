@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .biaopan {
+            width: 800px;
+            height: 800px;
+            border: 3px solid black;
+            border-radius: 50%;
+            margin: 100px auto;
+            position: relative;
+            background-color: blanchedalmond;
+        }
+        .shizhen {
+            width: 8px;
+            height: 200px;
+            background-color: black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -4px;
+            margin-top: -200px;
+            transform-origin: bottom center;
+            border-radius: 4px;
+
+        }
+
+        .fenzhen {
+            width: 6px;
+            height: 300px;
+            background-color: black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -3px;
+            margin-top: -300px;
+            transform-origin: bottom center;
+            border-radius: 3px;
+        }
+
+        .miaozhen {
+            width: 4px;
+            height: 350px;
+            background-color: black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -2px;
+            margin-top: -350px;
+            transform-origin: bottom center;
+            border-radius: 2px;
+        }
+        .po{
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="biaopan">
+        <div class="shizhen"></div>
+        <div class="fenzhen"></div>
+        <div class="miaozhen"></div>
+        <div class="po"></div>
+
+    </div>
+    <script>
+
+        var obiaopan = document.getElementsByClassName("biaopan")[0];
+        for (var i = 0; i < 12; i++) {
+            var kedu = document.createElement("div");
+            kedu.style.width = "4px";
+            kedu.style.height = "40px";
+            kedu.style.backgroundColor = "black"
+            kedu.style.position = "absolute";
+            kedu.style.top = "50%"
+            kedu.style.left = "50%"
+            kedu.style.marginTop = "-400px"
+            kedu.style.marginLeft = "-2px"
+            kedu.style.transformOrigin = "2px 400px"
+            kedu.style.transform = "rotate(" + i * 30 + "deg)";
+            obiaopan.appendChild(kedu);
+        }
+        for (var i = 0; i < 60; i++) {
+            var kedu = document.createElement("div");
+            kedu.style.width = "4px";
+            kedu.style.height = "20px";
+            kedu.style.backgroundColor = "black"
+            kedu.style.position = "absolute";
+            kedu.style.top = "50%"
+            kedu.style.left = "50%"
+            kedu.style.marginTop = "-400px"
+            kedu.style.marginLeft = "-2px"
+            kedu.style.transformOrigin = "2px 400px"
+            kedu.style.transform = "rotate(" + i * 6 + "deg)";
+            obiaopan.appendChild(kedu);
+        }
+        var hour = document.getElementsByClassName("shizhen")[0];
+        var minute = document.getElementsByClassName("fenzhen")[0];
+        var second = document.getElementsByClassName("miaozhen")[0];
+
+        run();
+
+        setInterval(function () {
+            run();
+
+        }, 1000)
+        function run() {
+            var timer = new Date();
+            var nowh = timer.getHours()*30 + timer.getMinutes()/2;
+            var nowm = timer.getMinutes()*6+timer.getSeconds()/10;
+            var nows = timer.getSeconds()*6;
+            second.style.transform = "rotate(" + nows+ "deg)"
+            minute.style.transform = "rotate(" + nowm + "deg)"
+            hour.style.transform = "rotate(" + nowh  + "deg)"
+
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: brown;
+        }
+        .box{
+            width: 900px;
+            height: 200px;
+            border: 2px dashed black;
+            margin: 200px auto;
+        }
+        .box .dd{
+            width: 300px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, .5);
+            float: left;
+            color: white;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .box .active{
+            background-color: rgba(256, 256, 256, .7);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="dd active">1</div>
+        <div class="dd">2</div>
+        <div class="dd">3</div>
+    </div>
+    <script>
+        var odd = document.getElementsByClassName("dd");
+        for(var i = 0;i<odd.length;i++){
+            //点击事件
+            odd[i].onclick = function(){
+                for(var j = 0;j<odd.length;j++){
+                    odd[j].classList.remove("active");
+                }
+                this.classList.add("active");
+                var obj = {};
+                var sjs = this.innerText;
+                location.hash = sjs;
+
+            }
+        }
+        window.onhashchange = function(){
+            var _hash = location.hash.slice(1);
+            // console.log(_hash);
+            for(var i = 0;i<odd.length;i++){
+                if(odd[i].innerText == _hash){
+                    odd[i].className = "dd active"
+                }
+                else{
+                odd[i].className = "dd"
+                }
+            }
+        }
+       
+    </script>
+</body>
+</html>

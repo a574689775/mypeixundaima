@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 200px;
+        height: 200px;
+        background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596876227402&di=19b18bb286f06db2a4422cc5d707d6db&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fbaike%2Fw%3D268%3Bg%3D0%2Fsign%3D9fb44a187af0f736d8fe4b07326ed424%2F3801213fb80e7bec60377f862d2eb9389a506be3.jpg);
+        font-size: 30px;
+        background-position: center;
+        line-height: 200px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <div></div>
+    <script>
+        var odiv = document.getElementsByTagName("div")[0];
+        odiv.onmousedown = function (e) {
+            var _top = e.clientY-odiv.offsetTop;
+            var _left = e.clientX-odiv.offsetLeft;
+            document.onmousemove = function (event) {  
+                odiv.style.top = event.clientY-_top+ "px";
+                odiv.style.left = event.clientX-_left + "px";  
+            }
+        }
+        odiv.onmouseup = function(){
+            document.onmousemove = function () {
+               
+            }
+        }
+    </script>
+</body>
+
+</html>

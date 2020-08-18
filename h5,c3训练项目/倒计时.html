@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg {
+            height: 500px;
+            width: 500px;
+            background-color: coral;
+            text-align: center;
+            position: relative;
+            top: 100px;
+            left: 690px;
+        }
+
+        .btn1 {
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        ._h1 {
+            line-height: 200px;
+            font-size: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <h1 class=_h1 id="h1">100</h1>
+        <button class="btn1" id="btn">开始</button>
+        <script>
+            var isgo = true;
+            var _timer1 = null;
+            var obtn = document.getElementById("btn");
+            var oh1 = document.getElementById("h1");
+            obtn.onclick = function () {
+                if (isgo) {
+                    var i = h1.innerText;
+                    _timer1 = setInterval(function () {
+                        oh1.innerText = --i;
+                    }, 1000)
+                    obtn.innerText = "暂停"
+                    isgo = !isgo;
+                    
+                }
+                else if (!isgo) {
+                    clearInterval(_timer1);
+                    obtn.innerText = "开始"
+                    isgo = !isgo;
+
+                }
+                if (h1.innerText == 0) {
+                        clearInterval(_timer1);
+                    }
+
+
+
+
+            }
+
+
+
+        </script>
+    </div>
+</body>
+
+</html>

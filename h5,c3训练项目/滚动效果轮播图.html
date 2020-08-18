@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: sandybrown;
+        }
+
+        .box {
+            width: 600px;
+            height: 400px;
+            border: 3px solid black;
+            margin: 200px auto;
+            position: relative;
+        }
+
+        .img-box img {
+            width: 600px;
+            height: 400px;
+
+        }
+
+        .box li {
+            float: left;
+            list-style: none;
+        }
+
+        .img-box ul {
+            width: 3600px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .img-box {
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+        }
+
+        .zuo {
+            position: absolute;
+            top: 350px;
+            left: 20px;
+
+        }
+
+        .you {
+            position: absolute;
+            top: 350px;
+            left: 300px;
+        }
+
+        .zuo li,
+        .you li {
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            border: 1px solid black;
+            border-radius: 50%;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            background-color: rgba(256, 256, 256, .5);
+        }
+
+        .box .active {
+            background-color: rgba(0, 0, 0, .5);
+            color: white;
+
+        }
+
+        .num-btn:hover {
+            cursor: pointer;
+        }
+
+        .zuoyou:hover {
+            background-color: rgba(0, 0, 0, .5);
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="img-box">
+            <ul id="img-ul">
+                <li>
+                    <img src="./公共img/lunbo1.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./公共img/lunbo2.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./公共img/lunbo3.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./公共img/lunbo4.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./公共img/lunbo5.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./公共img/lunbo1.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="btn-box">
+            <div class="zuo">
+                <ul>
+                    <li class="zuoyou">&lt;</li>
+                    <li class="zuoyou">&gt;</li>
+                </ul>
+            </div>
+            <div class="you">
+                <ul>
+                    <li class="num-btn active">1</li>
+                    <li class="num-btn">2</li>
+                    <li class="num-btn">3</li>
+                    <li class="num-btn">4</li>
+                    <li class="num-btn">5</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        var onumbtn = document.getElementsByClassName("num-btn");
+        var otu = document.getElementsByTagName("img");
+        var oul = document.getElementById("img-ul");
+        var ozy = document.getElementsByClassName("zuoyou");
+        var obox = document.getElementsByClassName("box")[0];
+        var timer,timer2;
+        var _this;
+        var nowIndex = 0;
+        var nextIndex = 0;
+        var fangxiang = 0;
+        var isRun = true;
+        run();
+        //图片滚动方法
+        function changeImg(nextindex) {
+            if(!isRun)
+            return false;
+            isRun = false;
+            //方向判断
+           if (nowIndex == 0 && nextindex == -1) {
+                oul.style.left ="-3000px";
+                fangxiang = 10;
+            }
+            else if (nextindex > nowIndex) {
+                fangxiang = -10;
+            } else if (nextindex < nowIndex) {
+                fangxiang = 10;
+            }
+            //按钮变色
+            for (var j = 0; j < onumbtn.length; j++) {
+                onumbtn[j].classList.remove("active");
+            }
+            if (nextindex == 5) {
+                onumbtn[0].classList.add("active");
+            } else if (nextindex == -1){
+                onumbtn[4].classList.add("active");
+                nextindex=4;
+            } else {
+                onumbtn[nextindex].classList.add("active");
+            }
+
+            //图片滚动
+            timer = setInterval(function () {
+                if (oul.offsetLeft == -nextindex * 600) {
+                    clearInterval(timer);
+                    isRun = true;
+                    if (nextindex == 5) {
+                        nowIndex = 0;
+                        oul.style.left = 0;
+                    } else {
+                        nowIndex = nextindex;
+                    }
+                } else {
+                    oul.style.left = oul.offsetLeft + fangxiang + "px";
+                }
+
+
+            }, 8)
+        }
+        //数字按钮事件
+        for (var i = 0; i < onumbtn.length; i++) {
+            onumbtn[i].index = i;
+            onumbtn[i].onclick = function () {
+                nextIndex = this.index;
+                changeImg(nextIndex);
+            }
+        }
+        //向左按钮
+        ozy[0].onclick = function () {
+            changeImg(nowIndex - 1);
+        }
+        //向右按钮
+        ozy[1].onclick = function () {
+            changeImg(nowIndex + 1);
+        }
+        //定时函数
+        obox.onmouseover=function(){
+            clearInterval(timer2);
+        }
+        obox.onmouseout = function(){
+            run();
+        } 
+        function run(){
+            timer2 = setInterval(function(){
+                changeImg(nowIndex + 1);
+            },3000)
+        }
+
+    </script>
+</body>
+
+</html>

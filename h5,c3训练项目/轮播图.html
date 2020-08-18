@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            height: 400px;
+            width: 743.52px;
+            border: 1px solid black;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .top li {
+            list-style: none;
+            display: none;
+        }
+
+        .top li img {
+            height: 400px;
+            widows: 800px;
+            ;
+        }
+
+        .top .active {
+            display: block;
+        }
+
+        .left {
+            position: absolute;
+            top: 350px;
+        }
+
+        .right {
+            position: absolute;
+            top: 350px;
+            left: 600px;
+        }
+
+        .ok,
+        .ok2 {
+            height: 20px;
+            width: 20px;
+            border: 2px solid rgba(0, 0, 0, .4);
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+            float: left;
+            margin-left: 20px;
+            background-color: rgba(0, 0, 0, .5);
+            color: #ffffff;
+
+        }
+
+        .right .active {
+            background-color: white;
+            color: black;
+        }
+
+        .ok:hover,
+        .ok2:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="top">
+            <ul>
+                <li class="active"><img src="../小米项目/小米主界面/img/tu1.jpg" alt=""></li>
+                <li><img src="../小米项目/小米主界面/img/tu2.jpg" alt=""></li>
+                <li><img src="../小米项目/小米主界面/img/tu3.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div class="buttom">
+            <div class="left">
+                <div class="ok">&lt;</div>
+                <div class="ok">&gt;</div>
+            </div>
+            <div class="right">
+                <div class="ok2 active">1</div>
+                <div class="ok2">2</div>
+                <div class="ok2">3</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ook = document.getElementsByClassName("ok");
+        var ook2 = document.getElementsByClassName("ok2");
+        var oli = document.getElementsByTagName("li");
+        var obox = document.getElementsByClassName("box");
+        var nowIndex = 0;
+        var timer;
+        for (var i = 0; i < ook2.length; i++) {
+            ook2[i].index = i;
+            ook2[i].onmouseover = function () {
+                nowIndex = this.index;
+                change();
+            }
+        }
+        ook[1].onclick = function () {
+            ++nowIndex;
+            if (nowIndex > 2)
+                nowIndex = 0;
+            change();
+        }
+        ook[0].onclick = function () {
+            --nowIndex;
+            if (nowIndex < 0)
+                nowIndex = 2;
+            change();
+        }
+        obox[0].onmouseover = function () {
+            clearInterval(timer);
+        }
+        obox[0].onmouseout = function () {
+            run();
+        }
+        function run() {
+            timer = setInterval(function () {
+                ++nowIndex;
+                if (nowIndex > 2)
+                    nowIndex = 0;
+                change();
+            }, 2000)
+        }
+        run();
+        function change() {
+            for (var j = 0; j < ook2.length; j++) {
+                ook2[j].className = "ok2"
+                oli[j].className = "";
+            }
+            oli[nowIndex].className = "active";
+            ook2[nowIndex].className = "ok2 active"
+        }
+    </script>
+</body>
+
+</html>
