@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+        }
+        body{
+            background-color: rgb(207, 122, 60);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var clientWith = document.documentElement.clientWidth || document.body.clientWidth;
+        var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        function Leaf() {
+            this.width = Math.random() * 100 + 100  //100-200d之间的随机宽度
+            this.left = Math.random() * (clientWith - this.width)  //0-屏幕宽度-叶子宽度
+            this.top = Math.random() * (clientHeight - this.width);
+
+            var img = new Image();
+            img.src = "./img/" + (Math.floor(Math.random() * 3) + 1) + ".png"
+            img.style.width = this.width + "px";
+            img.style.left = this.left + "px";
+            img.style.top = this.top + 'px';
+            this.img = img;
+            this.img.index=this;
+            
+        }
+        var leafList = [];
+        //初始化叶子位置方法
+        Leaf.prototype.init = function () {
+            document.body.appendChild(this.img);
+        }
+        //叶子下落方法
+        Leaf.prototype.fall = function () {
+            setTimeout(() => {
+                this.timer = setInterval(() => {
+                    //判断停止条件
+                    if (this.img.offsetTop >= clientHeight - this.img.offsetHeight) {
+                        clearInterval(this.timer)
+
+                    } else {
+                        //叶子下落速度
+                        this.img.style.top = this.img.offsetTop + 5 + 'px';
+                    }
+
+
+                }, 20)
+            }, 0)
+
+
+        }
+        //自定义叶子数量
+        for (var i = 0; i < 100; i++) {
+            var leaf = new Leaf()
+            leafList.push(leaf);
+            leaf.init();
+        }
+        //尝试做点击某个叶子下落
+        var oleaf = document.getElementsByTagName('img');
+        
+        for(var i =0;i<oleaf.length;i++){
+            oleaf[i].onmouseover = function(){
+                console.log(this);
+                this.index.fall();
+            }
+        }
+        //点击文档触发叶子下落事件
+        // document.onclick = function () {
+        //     for (var i = 0; i < leafList.length; i++) {
+        //         leafList[i].fall();
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

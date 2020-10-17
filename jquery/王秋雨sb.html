@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王秋雨sb</title>
+    <style>
+        .box{
+            height: 100%;
+            width: 100%;
+            border: 2px dashed black;
+      
+            position: relative;
+        }
+        button{
+            width: 200px;
+            height: 100px;
+            margin-top: 20px;
+            margin-left: 50%;
+            position: relative;
+            left: -100px;
+            background-color: rgba(0,0,0,.5);
+            color: rgba(255, 0, 0, 0.5);
+            font-size: 60px;
+            border: 1px solid black;
+            display: block;
+        }
+        button:hover{
+            background-color: rgba(255, 0, 0, 0.5);
+            color: rgba(0,0,0,.5);
+        }
+        span{
+            font-size: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <button>点我</button>
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        $('button').on('click',function(){
+            $('button').after('<span>王秋雨SB  </span>');
+        })
+        setInterval(function(){
+            $('button').trigger('click')
+        },16)
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model = "atext">
+        <button @click = "add">添加</button>
+        <ul>
+            <li :class = {red:obj.color} v-for = "(obj,index) in arrlist" @click = "change(obj)">{{obj.name}} <button @click.stop = "del(index)">删除</button></li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+
+        new Vue({
+            el:"#app",
+            data:{
+                arrlist:[{name:111,color:true},{name:222,color:false}],
+                atext:"",
+                isRed: true
+
+            },
+            methods:{
+                add(){
+                    this.arrlist.push({name:this.atext,color:false})
+                    this.atext=""
+
+                },
+                change(obj){
+                    obj.color = !obj.color
+                },
+                del(index){
+                    this.arrlist.splice(index,1)
+                    
+
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

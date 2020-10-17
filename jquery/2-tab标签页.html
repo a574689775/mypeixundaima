@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../小米项目/小米主界面/css/common.css">
+    <style>
+        .zong{
+            width: 800px;
+            border: 1px solid black;
+            margin: 200px auto 0;
+        }
+        .zong .top{
+            border-bottom: 1px solid black;
+            background: black;
+            
+        }
+        .top li{
+           list-style: none;
+           color: white;
+           display: inline-block;
+           width: 100px;
+           height: 50px;
+           text-align: center;
+           line-height: 50px;
+        }
+        .top .active{
+            color: black;
+            background-color: #dddddd;
+        }
+        .zong .xia{
+            display: none;
+        }
+        .zong .bottom .active{
+            display: block;;
+        }
+    </style>
+</head>
+<body>
+    <div class="zong">
+        <div class="top">
+            <ul>
+                <li class="active">第一节课</li>
+                <li>第二节课</li>
+                <li>第三节课</li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="xia active">第一节课内容</br>第一节课内容</br>第一节课内容</div>
+            <div class="xia">第二节课内容</br>第二节课内容</br>第二节课内容</div>
+            <div class="xia">第三节课内容</br>第三节课内容</br>第三节课内容</div>
+        </div>
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        $(".top li").on("click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            $('.xia').eq($(this).index()).addClass("active").siblings().removeClass("active");
+        })
+    </script>
+</body>
+</html>

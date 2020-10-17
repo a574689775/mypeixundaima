@@ -1,0 +1,153 @@
+/* 顶部黑色 */
+.top{
+    height: 130px;
+    background-color: rgb(46, 47, 59);
+    position: relative;
+    margin-bottom: 20px;
+}
+.box .top .i_box{
+    width: 40px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: rgb(225, 225, 225);
+    transform: scale(.8);
+}
+.top img{
+    width: 85px;
+    height: 64px;
+    position: absolute;
+    top: 55px;
+    left: 10px;
+}
+.top .font{
+    width: 280px;
+    height: 75px;
+    /* background-color: rosybrown; */
+    position: absolute;
+    left: 95px;
+    top: 75px;
+    left: 105px;
+}
+.font .f1,.font .f2{
+    color: #fff;
+    font-size: 12px;
+    padding-bottom: 5px;
+    font-family: "PingFangSC-Regular", "Hiragino Sans GB", Arial, Helvetica, "\5B8B\4F53", sans-serif;
+    
+}
+/* 导航三个按钮 */
+nav{
+    height: 40px;
+    width: 375px;
+    position: relative;
+}
+nav button{
+    padding: 0;
+    border-style: none;
+    border-width: 0;
+    height: 40px;
+    width: 33.333vw;
+    float: left;
+    color: #666666;
+    font-size: 16px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    /* 字体 */
+    font-family: "PingFangSC-Regular", "Hiragino Sans GB", Arial, Helvetica, "\5B8B\4F53", sans-serif;
+    outline-style: none;
+}
+.active2{
+    width: 33.3333vw;
+    position: relative;
+}
+nav span{
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    left: 17%;
+    width: 20px;
+    margin-left: -10px;
+    border-bottom: solid 2px #ffd300;
+    transition: all .1s linear;
+}
+/* 导航点击后的变化 */
+.active{
+    font-weight: 800;
+}
+/* 底部 */
+.bottom .menu{
+    width: 80px;
+    height: 722px;
+
+}
+.menu .hot{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80px;
+    height: 49px;
+    color: #333333;
+    /* font-weight: bold; */
+    text-decoration: none;
+    font-size: 13px;
+    background-color: #f5f5f5;
+    padding: 9px 10px 22px;
+    
+}
+.hot img{
+    width: 15px;
+    margin-right: 3px;
+}
+.menu a{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80px;
+    height: 67px;
+    color: #333333;
+    /* font-weight: bold; */
+    text-decoration: none;
+    font-size: 13px;
+    background-color: #f5f5f5;
+    padding: 9px 10px 22px;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
+    
+}
+.menu .active3{
+    background-color: #fff;
+    font-weight: bold;
+}
+/* 购物车 */
+.car{
+    height: 50px;
+    width: 375px;
+    background-color: #3b3b3c;
+    z-index: 200;
+    position: fixed;
+    top: 762px;
+    line-height: 50px;
+   
+}
+.car img{
+    width: 50px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+.car .font{
+    color: #999;
+    font-size: 14px;
+    position: absolute;
+    left: 70px;
+    font-family: "PingFangSC-Regular", Hiragino Sans GB, Arial, Helvetica, "\5B8B\4F53", sans-serif;
+}
+.car .font2{
+    color: #999;
+    position: absolute;
+    right: 18px;
+    font-size: 16px;
+    font-family: "PingFangSC-Regular", Hiragino Sans GB, Arial, Helvetica, "\5B8B\4F53", sans-serif;
+    font-weight: bold;
+}

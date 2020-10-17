@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+          
+        }
+
+        #app {
+            width: 780px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        #app h1 {
+            border-bottom: 1px solid black;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            height: 100px;
+            font-size: 20px;
+            line-height: 100px;
+
+        }
+
+        li .you {
+            float: right;
+
+        }
+
+        .red {
+            background-color: lightgray;
+        }
+        .pr{
+            position: absolute;
+            left: 50%;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>todolist</h1>
+        <span>商品名称：</span>
+        <input type="text" v-model="name">
+        <span>商品价格</span>
+        <input type="text" v-model="price">
+        <button @click="add()">添加</button>
+        <input type="text" @keyup="search()" v-model="searchFont">
+        <button>搜索</button>
+
+        <ul>
+            <li v-for="(obj,index) in list" :class={red:obj.isRed} @click="change(obj)" v-if="obj.isxianshi">
+                <input type="checkbox" v-model="obj.isRed">
+                <span >{{obj.name}}</span>
+                <span class="pr">{{obj.price}}元</span>
+                <span class="you" @click.stop="del(index)">[X]</span>
+            </li>
+        </ul>
+        
+        <button @click="delAll()">删除选中</button>
+        <span>总价：{{zongjia()}}元</span>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                list: [
+                    { name: "苹果", price: 50, isRed: false, isxianshi: true },
+                    { name: "香蕉", price: 28, isRed: false, isxianshi: true },
+                    { name: "西瓜", price: 10, isRed: false, isxianshi: true },
+                    { name: "草莓", price: 33, isRed: false, isxianshi: true },
+                    { name: "菠萝", price: 60, isRed: false, isxianshi: true },
+                    { name: "桃子", price: 42, isRed: false, isxianshi: true }
+                ],
+                name: "",
+                price: "",
+                searchFont: "",
+               
+
+
+            },
+            methods: {
+                add() {
+                    this.list.push({ name: this.name, price: this.price, isRed: false, isxianshi: true })
+                    this.name = ""
+                    this.price = ""
+
+                },
+                change(obj) {
+                    obj.isRed = !obj.isRed
+                },
+                del(idnex) {
+                    this.list.splice(idnex, 1)
+                },
+                delAll() {
+                    this.list = this.list.filter((obj) => {
+                        return obj.isRed == false
+                    })
+                },
+                zongjia() {
+                    var sum = 0
+                    this.list.forEach((obj) => {
+                        if (obj.isRed == true) {
+                            sum += obj.price
+                        }
+
+                    });
+                    return sum
+                },
+                search() {
+                    this.list.forEach((obj) => {
+                        obj.isxianshi = false
+                        if (obj.name.includes(this.searchFont)) {
+                            obj.isxianshi = true
+                        }
+                    })
+
+                },
+              
+
+            }
+        })
+
+    </script>
+</body>
+
+</html>

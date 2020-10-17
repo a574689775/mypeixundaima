@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="letter">A</div>
+        <div class="istrue">正确</div>
+        <div class="ok">正确率：100%</div>
+        <div class="ready">已正确0个</div>
+        <div class="level">段位：未定级</div>
+        <div class="daojishi">倒计时：30s</div>
+    </div>
+    <script>
+        var odao = document.getElementsByClassName("daojishi")[0];
+        var oready = document.getElementsByClassName("ready")[0];
+        var oletter = document.getElementsByClassName("letter")[0];
+        var oistrue = document.getElementsByClassName("istrue")[0];
+        var ook = document.getElementsByClassName("ok")[0];
+        var olevel = document.getElementsByClassName("level")[0];
+        var body = document.getElementsByTagName("body")[0];
+        var zhengque = 0;
+        var cuowu = 0;
+        var timer = 0;
+        setletter();
+        //设置定时器
+        function dingshi() {
+            var time = 29;
+            timer = setInterval(function () {
+                odao.innerHTML = "倒计时：" + time + "s";
+                time--;
+                //时间到处理
+                if (time == -1) {
+                    clearInterval(timer);
+                    body.style.backgroundColor = "gray";
+                    odao.style.fontSize = "100px";
+                    odao.style.marginTop = "50px";
+                    odao.innerHTML = "时间到!!";
+                    olevel.innerHTML = "计算中，请稍等......";
+                    setTimeout(function(){
+                        duanweipanduan();
+                    },5000)
+                   
+                }
+            }, 1000)
+        }
+
+        //段位判断
+        function duanweipanduan (){
+            if (Math.floor((zhengque / (zhengque + cuowu)) * 100) >= 80) {
+                        if (zhengque >= 0 && zhengque < 6) {
+                            olevel.innerHTML = "段位：坚韧黑铁";
+                        } else if (zhengque >= 6 && zhengque < 12) {
+                            olevel.innerHTML = "段位：英勇黄铜";
+                        } else if (zhengque >= 12 && zhengque < 18) {
+                            olevel.innerHTML = "段位：不屈白银";
+                        }else if (zhengque >= 18 && zhengque < 24) {
+                            olevel.innerHTML = "段位：荣耀黄金";
+                        }else if (zhengque >= 24 && zhengque < 30) {
+                            olevel.innerHTML = "段位：华贵铂金";
+                        }else if (zhengque >= 30 && zhengque < 36) {
+                            olevel.innerHTML = "段位：璀璨钻石";
+                        }else if (zhengque >= 36 && zhengque < 42) {
+                            olevel.innerHTML = "段位：超凡大师";
+                        }else if (zhengque >= 42 && zhengque < 48) {
+                            olevel.innerHTML = "段位：傲视宗师";
+                        }else if (zhengque >= 48 && zhengque < 54) {
+                            olevel.innerHTML = "段位：最强王者";
+                        }else if (zhengque >= 54){
+                            olevel.innerHTML = "您已经不能用段位形容了，您就是神！";
+                        }
+
+                    } else {
+                        olevel.innerHTML = "好垃圾，你是用脚打字的吗？";
+                    }
+        }
+        //设置随机字母
+        function setletter() {
+            var suiji = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+            oletter.innerHTML = suiji;
+        }
+
+
+        //更换随机字母
+        body.onkeydown = function (e) {
+            //按任意键开始
+            if (timer == 0) {
+                dingshi();
+            }
+            //输入正确  
+            if (String.fromCharCode(e.keyCode) == oletter.innerHTML) {
+                setletter();
+                oistrue.innerHTML = "正确";
+                zhengque++;
+                oready.innerHTML = "已正确"+zhengque + "个";
+                ook.innerHTML = "正确率：" + Math.floor((zhengque / (zhengque + cuowu)) * 100) + "%";
+            } else {//输入错误
+                setletter();
+                oistrue.innerHTML = "错误";
+                cuowu++;
+                oready.innerHTML = "已正确"+zhengque + "个";
+                ook.innerHTML = "正确率：" + Math.floor((zhengque / (zhengque + cuowu)) * 100) + "%";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

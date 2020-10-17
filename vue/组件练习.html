@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>父组件{{msg}}</h1>
+        <myzujian name = '我是帮师'  @xx='fn'></myzujian>
+        <myzujian name = '我是老四'></myzujian>
+        <myzujian name = '我是狗'></myzujian>
+    </div>
+    <template id="a123">
+        <div>
+            
+            <h1>{{name}}{{count}}</h1>
+            <p>我来自撤锁</p>
+            <button @click="add()">点击</button>
+        </div>
+
+    </template>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg:'0'
+
+
+            },
+            methods: {
+                fn(index){
+                    this.msg=index
+                }
+
+            },
+            components: {
+                "myzujian": {
+                    template: "#a123",
+                    //父→子 传参
+                    props:['name'],
+                    data() {
+                        return {
+                            count: '0'
+
+                        }
+                    },
+                    methods: {
+                        add() {
+                            this.count++
+                            //子传父
+                            this.$emit('xx',this.count)
+                        }
+
+                    }
+                }
+            }
+
+        })
+
+
+    </script>
+</body>
+
+</html>

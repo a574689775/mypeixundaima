@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="../小米项目/小米主界面/font/iconfont.css">
+</head>
+
+<body>
+    <div class="box">
+        <!-- top最上方黑色栏 -->
+        <div class="top">
+            <div class="i_box"><i class="iconfont icon-xiazai6"></i></div>
+            <!-- 商家图标 -->
+            <img src="./img/1.png" alt="">
+            <!-- 黑色栏中的两行字 -->
+            <div class="font">
+                <div class="f1">40分钟 | 203m</div>
+                <div class="f2">公告：欢迎光临，很高兴为您服务</div>
+                <div class="f3"></div>
+            </div>
+        </div>
+
+        <!-- 导航栏 -->
+        <nav>
+            <button class="nav_btn active ">点菜</button>
+            <button class="nav_btn">评价</button>
+            <button class="nav_btn">商家</button>
+            <span></span>
+        </nav>
+
+        <!-- 底部 -->
+        <div class="bottom">
+            <!-- 左边长条菜单分类 -->
+            <div class="menu">
+                <a href="#" class="hot active3"><img src="./img/2.png" alt="">热销</a>
+                <a href="#" class="hot"><img src="./img/3.png" alt="">折扣</a>
+                <a href="#">8月8日立秋吃饺子</a>
+                <a href="#">店长推荐</a>
+                <a href="#">限时套餐</a>
+                <a href="#">招牌水饺</a>
+                <a href="#">新品水饺</a>
+                <a href="#">柏记煎饺</a>
+                <a href="#">精美凉菜</a>
+                <a href="#">熏酱热菜</a>
+                <a href="#">蘸料</a>
+                <a href="#">经典套餐</a>
+                <a href="#">炝拌菜</a>
+                <a href="#">炝菜</a>
+                <a href="#">热菜</a>
+                <a href="#">店内环境营业资质</a>
+                <a href="#">柏记盖饭</a>
+                <a href="#">酒水饮料</a>
+                <a href="#">活动套餐</a>
+                <a href="#">单♥双人套餐</a>
+            </div>
+        </div>
+        <!-- 购物车 -->
+        <div class="car">
+            <img src="./img/4.png" alt="">
+            <div class="font">另需配送费¥3</div>
+            <div class="font2">¥20起送</div>
+        </div>
+    </div>
+
+
+    <!-- js部分 -->
+    <script>
+        var obtn = document.getElementsByClassName("nav_btn");
+        var ospan = document.getElementsByTagName("span")[0];
+        var omenu = document.getElementsByTagName("a");
+        //   导航栏
+        for (var i = 0; i < obtn.length; i++) {
+            obtn[i].index = i;
+            obtn[i].onclick = function () {
+                for (var i = 0; i < obtn.length; i++) {
+                    obtn[i].classList.remove("active");
+                }
+                this.classList.add("active")
+                if (this.index == 0) {
+                    ospan.style.left = "17%"
+                } else if (this.index == 1) {
+                    ospan.style.left = "50%"
+                } else {
+                    ospan.style.left = "84%"
+                }
+            }
+        }
+
+        // 左边菜单
+        for (var i = 0; i < omenu.length; i++) {
+            omenu[i].onclick = function () {
+                for (var i = 0; i < omenu.length; i++) {
+                    omenu[i].classList.remove("active3");
+                }
+                this.classList.add("active3")
+            }
+        }
+
+        //底部购物车
+    </script>
+</body>
+
+</html>
